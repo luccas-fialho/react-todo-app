@@ -1,38 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
+
+:root {
+  --font: 'Josefin Sans', sans-serif;
+
+  --dark-bg: #1D1D26;
+}
+
 .App {
-  text-align: center;
+  font-family: var(--font);
+  min-height: 100dvh;
+  min-width: 375px;
+  position: relative;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.background-img {
+  min-height: 30dvh;
+  background-image: url('./assets/images/bg-mobile-dark.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.app-body {
+  min-height: 70dvh;
+  background-color: var(--dark-bg);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+@media screen and (min-width: 1440px) {
+  .background-img {
+    background-image: url('./assets/images/bg-desktop-dark.jpg');
   }
 }

@@ -1,0 +1,160 @@
+.tasks__container {
+  position: absolute;
+  top: 10dvh;
+  left: 1rem;
+  width: calc(100% - 2rem);
+  color: white;
+}
+
+.title__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title__container > h1 {
+  font-size: 30px;
+  font-weight: bold;
+  letter-spacing: 10px;
+}
+
+.title__container > button {
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.create-task {
+  background-color: #21252B;
+  margin-top: 2rem;
+  padding: 1rem;
+  border-radius: 5px;
+  display: flex;
+}
+
+.create-task__input {
+  background-color: transparent;
+  border: 0;
+  font-size: 18px;
+  color: white;
+  width: 100%;
+  padding-left: 1rem;
+}
+
+.create-task__input:focus {
+  outline: 0;
+}
+
+.tasks {
+  margin-top: 1rem;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.tasks__task {
+  background-color: #21252B;
+  padding: 1rem;
+  border-bottom: 1px solid #5F5F77;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.tasks__task_checkbox, .create-task__checkbox {
+  height: 27px;
+  width: 30px;
+  border-radius: 25px;
+  cursor: pointer;
+  border: 1px solid #5F5F77;
+  background-color: transparent;
+}
+
+.tasks__task_name {
+  font-size: 15px;
+  width: 100%;
+  padding-left: 1rem;
+}
+
+.tasks__task_btn {
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.items-clear {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #21252B;
+}
+
+.items-clear__items-left {
+  font-size: 14px;
+  color: #5F5F77;
+}
+
+.items-clear__btn {
+  color: #5F5F77;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.filter-tasks__mb {
+  background-color: #21252B;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  padding: 0 1rem;
+}
+
+.filter-tasks__desktop {
+  display: none;
+}
+
+.filter-tasks__mb > button {
+  background-color: transparent;
+  border: 0;
+  color: #61607C;
+  cursor: pointer;
+  padding: 1rem;
+}
+
+@media screen and (min-width: 1440px) {
+  .tasks__container {
+    position: absolute;
+    top: 10dvh;
+    left: 30dvw;
+    width: calc(40% - 2rem);
+    color: white;
+  }
+
+  .tasks__task_checkbox {
+    height: 30px;
+    width: 32px;
+    border-radius: 30px;
+    cursor: pointer;
+  }
+  
+  .tasks__task_name {
+    font-size: 20px;
+  }
+
+  .filter-tasks__desktop {
+    display: flex;
+  }
+
+  .filter-tasks__desktop > button {
+    background-color: transparent;
+    border: 0;
+    color: #61607C;
+    cursor: pointer;
+    padding: 0 1rem;
+  }
+
+  .filter-tasks__mb {
+    display: none;
+  }
+}
