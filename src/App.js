@@ -14,7 +14,7 @@ function App() {
     <div
       style={
         isDarkMode
-          ? window.innerWidth >= 1440
+          ? window.innerWidth >= 1024
             ? {
                 backgroundImage: `url(${bgDesktopDark})`,
                 backgroundPosition: "top center",
@@ -29,7 +29,7 @@ function App() {
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "100%",
               }
-          : window.innerWidth >= 1440
+          : window.innerWidth >= 1024
           ? {
               backgroundImage: `url(${bgDesktopLight})`,
               backgroundPosition: "top center",
