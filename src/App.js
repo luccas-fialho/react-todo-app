@@ -20,14 +20,14 @@ function App() {
                 backgroundPosition: "top center",
                 backgroundColor: "#1D1D26",
                 backgroundRepeat: "no-repeat",
-                backgroundSize: "contain",
+                backgroundSize: "100%",
               }
             : {
                 backgroundImage: `url(${bgMobileDark})`,
                 backgroundPosition: "top center",
                 backgroundColor: "#1D1D26",
                 backgroundRepeat: "no-repeat",
-                backgroundSize: "contain",
+                backgroundSize: "100%",
               }
           : window.innerWidth >= 1440
           ? {
@@ -35,19 +35,19 @@ function App() {
               backgroundPosition: "top center",
               backgroundColor: "#F5F5F7",
               backgroundRepeat: "no-repeat",
-              backgroundSize: "contain",
+              backgroundSize: "100%",
             }
           : {
               backgroundImage: `url(${bgMobileLight})`,
               backgroundPosition: "top center",
               backgroundColor: "#F5F5F7",
               backgroundRepeat: "no-repeat",
-              backgroundSize: "contain",
+              backgroundSize: "100%",
             }
       }
       className="App"
     >
-      <Tasks isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode}/>
+      <Tasks isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
     </div>
   );
 }

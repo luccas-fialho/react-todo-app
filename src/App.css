@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap");
 
 :root {
-  --font: 'Josefin Sans', sans-serif;
+  --font: "Josefin Sans", sans-serif;
 }
 
 .App {
@@ -9,21 +9,4 @@
   display: flex;
   min-height: 100dvh;
   min-width: 375px;
-}
-
-.background-img {
-  min-height: 30dvh;
-  background-image: url('./assets/images/bg-mobile-dark.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.app-body {
-  min-height: 100dvh;
-}
-
-@media screen and (min-width: 1440px) {
-  .background-img {
-    background-image: url('./assets/images/bg-desktop-dark.jpg');
-  }
 }

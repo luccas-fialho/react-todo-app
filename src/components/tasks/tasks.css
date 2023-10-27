@@ -23,7 +23,7 @@
 }
 
 .create-task {
-  background-color: #21252B;
+  background-color: #21252b;
   margin-top: 2rem;
   padding: 1rem;
   border-radius: 5px;
@@ -54,26 +54,28 @@
 }
 
 .tasks__task {
-  background-color: #21252B;
+  background-color: #21252b;
   padding: 1rem;
-  border-bottom: 1px solid #5F5F77;
+  border-bottom: 1px solid #5f5f77;
   display: flex;
   align-items: center;
   justify-content: flex-start;
 }
 
-.tasks__task_checkbox, .create-task__checkbox {
+.tasks__task_checkbox,
+.create-task__checkbox {
   height: 20px;
   width: 20px;
   border-radius: 25px;
   cursor: pointer;
-  border: 1px solid #5F5F77;
+  border: 1px solid #5f5f77;
   background-color: transparent;
 }
 
 .tasks__task_checkbox:hover {
   border: 1px solid transparent;
-  background: linear-gradient(#21252B, #21252B) padding-box, linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%)) border-box; 
+  background: linear-gradient(#21252b, #21252b) padding-box,
+    linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%)) border-box;
 }
 
 .tasks__task_name {
@@ -93,23 +95,23 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  background-color: #21252B;
+  background-color: #21252b;
 }
 
 .items-clear__items-left {
   font-size: 14px;
-  color: #5F5F77;
+  color: #5f5f77;
 }
 
 .items-clear__btn {
-  color: #5F5F77;
+  color: #5f5f77;
   background-color: transparent;
   border: 0;
   cursor: pointer;
 }
 
 .filter-tasks__mb {
-  background-color: #21252B;
+  background-color: #21252b;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -124,7 +126,7 @@
 .filter-tasks__mb > button {
   background-color: transparent;
   border: 0;
-  color: #61607C;
+  color: #61607c;
   cursor: pointer;
   padding: 1rem;
 }
@@ -162,13 +164,14 @@
     visibility: hidden;
   }
 
-  .tasks__task_checkbox, .create-task__checkbox {
+  .tasks__task_checkbox,
+  .create-task__checkbox {
     height: 30px;
     width: 30px;
     border-radius: 30px;
     cursor: pointer;
   }
-  
+
   .tasks__task_name {
     font-size: 20px;
   }
@@ -180,7 +183,7 @@
   .filter-tasks__desktop > button {
     background-color: transparent;
     border: 0;
-    color: #61607C;
+    color: #61607c;
     cursor: pointer;
     padding: 0 1rem;
   }
