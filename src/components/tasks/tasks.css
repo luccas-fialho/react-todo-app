@@ -1,9 +1,7 @@
 .tasks__container {
-  position: absolute;
-  top: 10dvh;
-  left: 1rem;
-  width: calc(100% - 2rem);
+  width: 100%;
   color: white;
+  margin: 5rem 2rem 2rem 2rem;
 }
 
 .title__container {
@@ -35,10 +33,14 @@
 .create-task__input {
   background-color: transparent;
   border: 0;
-  font-size: 18px;
+  font-size: 16px;
   color: white;
   width: 100%;
   padding-left: 1rem;
+}
+
+.create-task__input::placeholder {
+  font-family: var(--font);
 }
 
 .create-task__input:focus {
@@ -61,8 +63,8 @@
 }
 
 .tasks__task_checkbox, .create-task__checkbox {
-  height: 27px;
-  width: 30px;
+  height: 20px;
+  width: 20px;
   border-radius: 25px;
   cursor: pointer;
   border: 1px solid #5F5F77;
@@ -70,11 +72,12 @@
 }
 
 .tasks__task_checkbox:hover {
-  border: 1px solid yellow; 
+  border: 1px solid transparent;
+  background: linear-gradient(#21252B, #21252B) padding-box, linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%)) border-box; 
 }
 
 .tasks__task_name {
-  font-size: 18px;
+  font-size: 16px;
   width: 100%;
   padding-left: 1rem;
 }
@@ -128,26 +131,40 @@
 
 @media screen and (min-width: 1440px) {
   .tasks__container {
-    position: absolute;
-    top: 10dvh;
-    left: 30dvw;
-    width: calc(40% - 2rem);
+    width: 600px;
+    margin: 7rem auto 2rem auto;
     color: white;
+  }
+
+  .title__container {
+    align-items: flex-start;
+  }
+
+  .title__container > h1 {
+    font-size: 50px;
+  }
+
+  .create-task__input {
+    font-size: 20px;
+  }
+
+  .tasks {
+    margin-top: 2rem;
   }
 
   .tasks__task:hover {
     .tasks__task_btn {
-      display: block;
+      visibility: visible;
     }
   }
 
   .tasks__task_btn {
-    display: none;
+    visibility: hidden;
   }
 
-  .tasks__task_checkbox {
+  .tasks__task_checkbox, .create-task__checkbox {
     height: 30px;
-    width: 32px;
+    width: 30px;
     border-radius: 30px;
     cursor: pointer;
   }

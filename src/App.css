@@ -6,9 +6,9 @@
 
 .App {
   font-family: var(--font);
+  display: flex;
   min-height: 100dvh;
   min-width: 375px;
-  position: relative;
 }
 
 .background-img {

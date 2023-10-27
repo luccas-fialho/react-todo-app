@@ -168,7 +168,6 @@ function Tasks(props) {
                           border: "none",
                         }
                       : {
-                          border: "1px solid #5F5F77",
                           backgroundColor: "transparent",
                         }
                   }

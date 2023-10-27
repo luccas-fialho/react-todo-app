@@ -11,28 +11,43 @@ function App() {
   let [isDarkMode, setIsDarkMode] = useState(true);
 
   return (
-    <div className="App">
-      <div
-        style={
-          window.innerWidth < 1440
+    <div
+      style={
+        isDarkMode
+          ? window.innerWidth >= 1440
             ? {
-                backgroundImage: isDarkMode
-                  ? `url(${bgMobileDark})`
-                  : `url(${bgMobileLight})`,
+                backgroundImage: `url(${bgDesktopDark})`,
+                backgroundPosition: "top center",
+                backgroundColor: "#1D1D26",
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "contain",
               }
             : {
-                backgroundImage: isDarkMode
-                  ? `url(${bgDesktopDark})`
-                  : `url(${bgDesktopLight})`,
+                backgroundImage: `url(${bgMobileDark})`,
+                backgroundPosition: "top center",
+                backgroundColor: "#1D1D26",
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "contain",
               }
-        }
-        className="background-img"
-      ></div>
-      <Tasks setIsDarkMode={setIsDarkMode} isDarkMode={isDarkMode} />
-      <div
-        style={{ backgroundColor: isDarkMode ? "#1D1D26" : "#F5F5F7" }}
-        className="app-body"
-      ></div>
+          : window.innerWidth >= 1440
+          ? {
+              backgroundImage: `url(${bgDesktopLight})`,
+              backgroundPosition: "top center",
+              backgroundColor: "#F5F5F7",
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "contain",
+            }
+          : {
+              backgroundImage: `url(${bgMobileLight})`,
+              backgroundPosition: "top center",
+              backgroundColor: "#F5F5F7",
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "contain",
+            }
+      }
+      className="App"
+    >
+      <Tasks isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode}/>
     </div>
   );
 }
