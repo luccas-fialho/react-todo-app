@@ -69,8 +69,12 @@
   background-color: transparent;
 }
 
+.tasks__task_checkbox:hover {
+  border: 1px solid yellow; 
+}
+
 .tasks__task_name {
-  font-size: 15px;
+  font-size: 18px;
   width: 100%;
   padding-left: 1rem;
 }
@@ -131,6 +135,16 @@
     color: white;
   }
 
+  .tasks__task:hover {
+    .tasks__task_btn {
+      display: block;
+    }
+  }
+
+  .tasks__task_btn {
+    display: none;
+  }
+
   .tasks__task_checkbox {
     height: 30px;
     width: 32px;
@@ -152,6 +166,10 @@
     color: #61607C;
     cursor: pointer;
     padding: 0 1rem;
+  }
+
+  .filter-tasks__desktop > button:hover {
+    color: white;
   }
 
   .filter-tasks__mb {

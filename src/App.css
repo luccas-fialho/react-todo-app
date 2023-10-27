@@ -2,8 +2,6 @@
 
 :root {
   --font: 'Josefin Sans', sans-serif;
-
-  --dark-bg: #1D1D26;
 }
 
 .App {
@@ -21,8 +19,7 @@
 }
 
 .app-body {
-  min-height: 70dvh;
-  background-color: var(--dark-bg);
+  min-height: 100dvh;
 }
 
 @media screen and (min-width: 1440px) {

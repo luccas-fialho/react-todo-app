@@ -1,26 +1,34 @@
 import "./tasks.css";
 import iconSun from "../../assets/images/icon-sun.svg";
-import iconMoon from '../../assets/images/icon-moon.svg'
+import iconMoon from "../../assets/images/icon-moon.svg";
 import iconCross from "../../assets/images/icon-cross.svg";
 import iconChecked from "../../assets/images/icon-check.svg";
 import { useState } from "react";
 
 function Tasks(props) {
-  let [tasks, setTasks] = useState([]);
+  const storageTasks = JSON.parse(localStorage.getItem("task"));
+  let [tasks, setTasks] = useState(storageTasks || []);
+  let [tasksAux, setTasksAux] = useState(storageTasks || []);
   let [newTask, setNewTask] = useState("");
-  let [tasksLeft, setTasksLeft] = useState(0);
-  let [tasksAux, setTasksAux] = useState([]);
+  let [tasksLeft, setTasksLeft] = useState(
+    JSON.parse(localStorage.getItem("tasksLeft")) || 0
+  );
+  let [isActive, setActive] = useState([true, false, false]);
 
   const createTask = () => {
     if (newTask === "") return;
     setTasksLeft(tasksLeft + 1);
+    localStorage.setItem("tasksLeft", tasksLeft + 1);
     const task = {
       id: tasks.length === 0 ? 1 : tasks[tasks.length - 1].id + 1,
       name: newTask,
       isDone: false,
     };
+
+    setNewTask("");
     setTasks([...tasks, task]);
     setTasksAux([...tasks, task]);
+    localStorage.setItem("task", JSON.stringify([...tasksAux, task]));
   };
 
   const handleChange = (task) => {
@@ -34,13 +42,17 @@ function Tasks(props) {
   const deleteTask = (taskToDelete) => {
     if (taskToDelete.isDone) {
       setTasks(tasks.filter((task) => task.id !== taskToDelete.id));
-      //deletar do array aux tabem
       setTasksAux(tasksAux.filter((task) => task.id !== taskToDelete.id));
     } else {
       setTasks(tasks.filter((task) => task.id !== taskToDelete.id));
       setTasksAux(tasksAux.filter((task) => task.id !== taskToDelete.id));
       setTasksLeft(tasksLeft - 1);
+      localStorage.setItem("tasksLeft", tasksLeft - 1);
     }
+    localStorage.setItem(
+      "task",
+      JSON.stringify(tasks.filter((task) => task.id !== taskToDelete.id))
+    );
   };
 
   const handleCheckboxChange = (id, isDone) => {
@@ -48,6 +60,10 @@ function Tasks(props) {
       tasks.map((task) => {
         if (task.id === id) {
           setTasksLeft(!isDone ? tasksLeft - 1 : tasksLeft + 1);
+          localStorage.setItem(
+            "tasksLeft",
+            !isDone ? tasksLeft - 1 : tasksLeft + 1
+          );
           return { ...task, isDone: !isDone };
         } else {
           return task;
@@ -63,22 +79,37 @@ function Tasks(props) {
         }
       })
     );
+    localStorage.setItem(
+      "task",
+      JSON.stringify(
+        tasksAux.map((task) => {
+          if (task.id === id) {
+            return { ...task, isDone: !isDone };
+          } else {
+            return task;
+          }
+        })
+      )
+    );
   };
 
   const getAllTasks = () => {
     setTasks([...tasksAux]);
+    setActive([true, false, false]);
   };
 
   const getActiveTasks = () => {
     const activeTasks = tasksAux.filter((task) => task.isDone === false);
     if (activeTasks.length === 0) return;
     setTasks(activeTasks);
+    setActive([false, true, false]);
   };
 
   const getCompletedTasks = () => {
     const completedTasks = tasksAux.filter((task) => task.isDone === true);
     if (completedTasks.length === 0) return;
     setTasks(completedTasks);
+    setActive([false, false, true]);
   };
 
   const clearCompletedTasks = () => {
@@ -86,14 +117,15 @@ function Tasks(props) {
     if (activeTasks.length === 0) return;
     setTasks(activeTasks);
     setTasksAux(activeTasks);
+    localStorage.setItem("task", JSON.stringify(activeTasks));
   };
 
   return (
     <div className="tasks__container">
       <div className="title__container">
         <h1>TODO</h1>
-        <button onClick={() => props.setIsDarkMode(!props.isDarkMode) }>
-          <img src={ props.isDarkMode ? iconSun : iconMoon} alt="sun icon" />
+        <button onClick={() => props.setIsDarkMode(!props.isDarkMode)}>
+          <img src={props.isDarkMode ? iconSun : iconMoon} alt="sun icon" />
         </button>
       </div>
       <div
@@ -106,6 +138,7 @@ function Tasks(props) {
           type="text"
           placeholder=" Create a new todo..."
           className="create-task__input"
+          value={newTask}
           onChange={(event) => handleChange(event)}
           onKeyDown={(event) => handleKeyPressed(event)}
         />
@@ -123,15 +156,27 @@ function Tasks(props) {
                 className="tasks__task"
               >
                 <button
-                  style={{
-                    background: task.isDone
-                      ? `rgb(126,119,230) url(${iconChecked}) no-repeat center`
-                      : "none",
-                    border: task.isDone ? "none" : "1px solid #5F5F77",
-                  }}
+                  style={
+                    task.isDone
+                      ? {
+                          backgroundImage:
+                            "linear-gradient(hsl(192, 100%, 67%),hsl(280, 87%, 65%))",
+                          backgroundPosition: "center",
+                          backgroundRepeat: "no-repeat",
+                          backgroundColor:
+                            "linear-gradient(hsl(192, 100%, 67%),hsl(280, 87%, 65%))",
+                          border: "none",
+                        }
+                      : {
+                          border: "1px solid #5F5F77",
+                          backgroundColor: "transparent",
+                        }
+                  }
                   className="tasks__task_checkbox"
                   onClick={() => handleCheckboxChange(task.id, task.isDone)}
-                ></button>
+                >
+                  {task.isDone && <img src={iconChecked} alt="check" />}
+                </button>
                 <p
                   className="tasks__task_name"
                   style={
@@ -171,9 +216,36 @@ function Tasks(props) {
               }}
               className="filter-tasks__desktop"
             >
-              <button onClick={getAllTasks}>All</button>
-              <button onClick={getActiveTasks}>Active</button>
-              <button onClick={getCompletedTasks}>Completed</button>
+              <button
+                style={
+                  isActive[0]
+                    ? { color: "hsl(220, 98%, 61%)" }
+                    : { color: "#61607C" }
+                }
+                onClick={getAllTasks}
+              >
+                All
+              </button>
+              <button
+                style={
+                  isActive[1]
+                    ? { color: "hsl(220, 98%, 61%)" }
+                    : { color: "#61607C" }
+                }
+                onClick={getActiveTasks}
+              >
+                Active
+              </button>
+              <button
+                style={
+                  isActive[2]
+                    ? { color: "hsl(220, 98%, 61%)" }
+                    : { color: "#61607C" }
+                }
+                onClick={getCompletedTasks}
+              >
+                Completed
+              </button>
             </div>
             <button className="items-clear__btn" onClick={clearCompletedTasks}>
               Clear Completed
@@ -185,9 +257,36 @@ function Tasks(props) {
               backgroundColor: props.isDarkMode ? "#21252B" : "#FFFFFF",
             }}
           >
-            <button onClick={getAllTasks}>All</button>
-            <button onClick={getActiveTasks}>Active</button>
-            <button onClick={getCompletedTasks}>Completed</button>
+            <button
+              style={
+                isActive[0]
+                  ? { color: "hsl(220, 98%, 61%)" }
+                  : { color: "#61607C" }
+              }
+              onClick={getAllTasks}
+            >
+              All
+            </button>
+            <button
+              style={
+                isActive[1]
+                  ? { color: "hsl(220, 98%, 61%)" }
+                  : { color: "#61607C" }
+              }
+              onClick={getActiveTasks}
+            >
+              Active
+            </button>
+            <button
+              style={
+                isActive[2]
+                  ? { color: "hsl(220, 98%, 61%)" }
+                  : { color: "#61607C" }
+              }
+              onClick={getCompletedTasks}
+            >
+              Completed
+            </button>
           </div>
         </div>
       )}
