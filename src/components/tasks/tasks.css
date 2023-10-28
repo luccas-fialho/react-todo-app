@@ -66,7 +66,7 @@
 .create-task__checkbox {
   height: 20px;
   width: 20px;
-  border-radius: 25px;
+  border-radius: 50%;
   cursor: pointer;
   border: 1px solid #5f5f77;
   background-color: transparent;
@@ -76,6 +76,12 @@
   border: 1px solid transparent;
   background: linear-gradient(#21252b, #21252b) padding-box,
     linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%)) border-box;
+}
+
+.tasks__task_checkbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .tasks__task_name {
@@ -168,7 +174,7 @@
   .create-task__checkbox {
     height: 30px;
     width: 30px;
-    border-radius: 30px;
+    border-radius: 50%;
     cursor: pointer;
   }
 
